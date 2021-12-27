@@ -6,39 +6,18 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.astar.delegatesexample.R
 
-
 class CustomView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
 
-    private var titleText: TextView
-    private var subtitleText: TextView
-    private var descriptionText: TextView
+    private val view = inflate(context, R.layout.custom_view_item, this)
 
-    var title: String
-        get() = titleText.text.toString()
-        set(value) {
-            titleText.text = value
-        }
+    private var titleText: TextView = view.findViewById(R.id.titleText)
+    private var subtitleText: TextView = view.findViewById(R.id.subtitleText)
+    private var descriptionText: TextView = view.findViewById(R.id.descriptionText)
 
-    var subtitle: String
-        get() = subtitleText.text.toString()
-        set(value) {
-            subtitleText.text = value
-        }
-
-    var description: String
-        get() = descriptionText.text.toString()
-        set(value) {
-            descriptionText.text = value
-        }
-
-    init {
-        val view = inflate(context, R.layout.custom_view_item, this)
-        titleText = view.findViewById(R.id.titleText)
-        subtitleText = view.findViewById(R.id.subtitleText)
-        descriptionText = view.findViewById(R.id.descriptionText)
-
-    }
+    var title by titleText.text()
+    var subtitle by subtitleText.text()
+    var description by descriptionText.text()
 }
